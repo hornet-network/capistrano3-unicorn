@@ -58,7 +58,7 @@ namespace :unicorn do
   desc "Restart Unicorn (USR2); use this when preload_app: true"
   task :restart do
     invoke "unicorn:start"
-    on roles(fetch(:unicorn_roles)), in: :sequence, wait: 0 do
+    on roles(fetch(:unicorn_roles)), in: :sequence, wait: 1 do
       within current_path do
         info "unicorn restarting..."
         execute :kill, "-s USR2", pid
